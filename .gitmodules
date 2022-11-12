@@ -1,0 +1,3 @@
+[submodule "gezzy"]
+	path = gezzy
+	url = https://github.com/astral-shining/gezzy.git
