@@ -23,10 +23,10 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
 add_subdirectory(gezzy)
-
+link_libraries(gezzy)
 
 add_subdirectory(src)
 
 # add the executable
 add_executable(${CMAKE_PROJECT_NAME} ${TRIANGLE_SOURCES})
-target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC gezzy)
+
