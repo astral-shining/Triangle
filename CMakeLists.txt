@@ -8,6 +8,7 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 message(${CMAKE_BUILD_TYPE})
 
+
 #set(CMAKE_CXX_COMPILER "clang++")
 set(CMAKE_CXX_FLAGS "-Wall -pedantic -Werror -Wno-format-security")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -Og -fsanitize=address")
