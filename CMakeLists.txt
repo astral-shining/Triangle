@@ -14,7 +14,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "-g -Og -fsanitize=address")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -ffunction-sections -fdata-sections -fno-rtti -fvisibility=hidden -DNDEBUG")
 
 if (CMAKE_BUILD_TYPE STREQUAL "Release")
-    set (CMAKE_EXE_LINKER_FLAGS "-s -flto -Wl,--gc-sections -Wl,--strip-all")
+    set(CMAKE_EXE_LINKER_FLAGS "-s -flto -Wl,--gc-sections -Wl,--strip-all")
 endif()
 
 include_directories(${PROJECT_SOURCE_DIR})
@@ -27,6 +27,7 @@ link_libraries(gezzy)
 
 add_subdirectory(src)
 
-# add the executable
-add_executable(${CMAKE_PROJECT_NAME} ${TRIANGLE_SOURCES})
+add_library(${CMAKE_PROJECT_NAME}_obj OBJECT ${TRIANGLE_SOURCES})
 
+# add the executable
+add_executable(${CMAKE_PROJECT_NAME} $<TARGET_OBJECTS:gezzy> $<TARGET_OBJECTS:${CMAKE_PROJECT_NAME}_obj>)
