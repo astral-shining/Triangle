@@ -1,6 +1,8 @@
 #include <cpputils/fastvector.hpp>
-#include <glabs/gl.hpp>
 #include <gezzy/window.hpp>
+#include <glabs/gl.hpp>
+
+Window window {"h"};
 
 GL::Shader s {
 R"(
