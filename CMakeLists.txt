@@ -28,7 +28,8 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
 add_subdirectory(lib/gezzy)
-add_subdirectory(src)
+
+file(GLOB_RECURSE TRIANGLE_SOURCES src/*.cpp)
 
 # add the executable
 add_executable(${CMAKE_PROJECT_NAME} ${TRIANGLE_SOURCES})
