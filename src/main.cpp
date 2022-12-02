@@ -27,15 +27,15 @@ void main() {
 }
 )"
 };
+
 #include <glm/gtx/matrix_transform_2d.hpp>
 int main() {
     GL::VAO vao;
     vao.use();
     GL::VBO<glm::vec3, GL::RGBA> vbo {
-        {{-1.0, 1.0, 0.0}, {}},
-        {{1.0, 1.0, 0.0}, {}},
-        {{1.0, -1.0, 0.0}, {}},
-        {{-1.0, -1.0, 0.0}, {}}
+        {{-0.5, -0.5, 0.0}, 0xff0000ff_rgba},
+        {{0.5, -0.5, 0.0}, 0x00ff00ff_rgba},
+        {{0.0, 0.5, 0.0}, 0x0000ffff_rgba}
     };
 
     s.compile();
@@ -43,16 +43,10 @@ int main() {
     .autoLinkAll();
     vao.unuse();
 
-    float x {};
     while (window.update()) {
         vao.use();
-        vbo.bufferSubData(GL::HSVA(x, 1.f, 1.f, 1.f), 0);
-        vbo.bufferSubData(GL::HSVA(x+90.f, 1.f, 1.f), 1);
-        vbo.bufferSubData(GL::HSVA(x+180.f, 1.f, 1.f), 2);
-        vbo.bufferSubData(GL::HSVA(x+270.f, 1.f, 1.f), 3);
         s.use();
 
-        glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-        x+=1.f;
+        glDrawArrays(GL_TRIANGLES, 0, 3);
     }
 }
