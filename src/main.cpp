@@ -30,14 +30,14 @@ void main() {
 
 #include <glm/gtx/matrix_transform_2d.hpp>
 int main() {
-    GL::VAO vao;
-    vao.use();
     GL::VBO<glm::vec3, GL::RGBA> vbo {
         {{-0.5, -0.5, 0.0}, 0xff0000ff_rgba},
         {{0.5, -0.5, 0.0}, 0x00ff00ff_rgba},
         {{0.0, 0.5, 0.0}, 0x0000ffff_rgba}
     };
 
+    GL::VAO vao;
+    vao.use();
     s.compile();
     s.attribLinker(vbo)
     .autoLinkAll();
