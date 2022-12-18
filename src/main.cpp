@@ -1,4 +1,3 @@
-#include <cpputils/fastvector.hpp>
 #include <gezzy/window.hpp>
 #include <glabs/gl.hpp>
 
@@ -28,9 +27,28 @@ void main() {
 )"
 };
 
-#include <glm/gtx/matrix_transform_2d.hpp>
+//#include <glm/ext/vector_float3.hpp>
+//#include <glm/gtx/matrix_transform_2d.hpp>
+//
+struct A {
+    int x;
+    A(int x) : x(x) {
+        printf("%s\n", __PRETTY_FUNCTION__);
+    }
+    A(const A& o) : x(o.x) {
+        printf("%s\n", __PRETTY_FUNCTION__);
+    }
+    A(A&&) {
+        printf("%s\n", __PRETTY_FUNCTION__);
+    }
+    ~A() {
+        printf("%s\n", __PRETTY_FUNCTION__);
+    }
+
+};
+
 int main() {
-    GL::VBO<glm::vec3, GL::RGBA> vbo {
+    GL::VBO<Vec3, GL::RGBA> vbo {
         {{-0.5, -0.5, 0.0}, 0xff0000ff_rgba},
         {{0.5, -0.5, 0.0}, 0x00ff00ff_rgba},
         {{0.0, 0.5, 0.0}, 0x0000ffff_rgba}
@@ -40,8 +58,15 @@ int main() {
     vao.use();
     s.compile();
     s.attribLinker(vbo)
-    .autoLinkAll();
+    .autoLink()
+    .autoLink();
     vao.unuse();
+
+    Vector<int> a {1,2,3,4};
+
+    for (auto& i : a) {
+        printf("%d\n", i);
+    }
 
     while (window.update()) {
         vao.use();

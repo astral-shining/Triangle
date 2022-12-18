@@ -8,13 +8,14 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 message(${CMAKE_BUILD_TYPE})
 
-#set(CMAKE_CXX_COMPILER "clang++")
-set(CMAKE_CXX_FLAGS "-Wall -pedantic -Werror -Wno-format-security")
+#set(CMAKE_CXX_COMPILER "gcc")
+set(CMAKE_CXX_FLAGS "-Wall -Wpedantic -Werror -Wno-format-security")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -Og")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3 -ffunction-sections -fdata-sections -fno-rtti -fvisibility=hidden -DNDEBUG")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -ffunction-sections -fdata-sections -fno-rtti -fvisibility=hidden -DNDEBUG -fno-exceptions -nodefaultlibs")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 if (CMAKE_BUILD_TYPE STREQUAL "Release")
-    set(CMAKE_EXE_LINKER_FLAGS "-s -flto -Wl,--gc-sections -Wl,--strip-all")
+    set(CMAKE_EXE_LINKER_FLAGS "-s -flto -Wl,--gc-sections -Wl,--strip-all -lc")
 endif()
 
 if (UNIX)
